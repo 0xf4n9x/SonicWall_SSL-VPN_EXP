@@ -6,10 +6,13 @@ SonicWALL SSL-VPN Web Server Vulnerable Exploit
 ### Dork
 
 Shodan:
+
 http.favicon.hash:-1153950306
+
 http.favicon.hash:-2012355198
 
 Fofa:
+
 (body="login_box_sonicwall" || header="SonicWALL SSL-VPN Web Server") && body="SSL-VPN"
 
 ### reference
